@@ -68,3 +68,9 @@ Reconnect a Cursor Remote-SSH terminal so `$VSCODE_SHELL_INTEGRATION=1`.
    run `./repair-extension.sh` and restart Cursor.
 3. Both `~/Applications/Claude{Banner,Alert}.app` exist and appear in System Settings?
 4. `jq` on the hook's PATH?
+
+## More detail
+
+See [AGENTS.md](AGENTS.md) for the full internals — data flow, the exact 5 patches,
+hook JSON fields, the `timeout:false` saga, and a debug recipe — aimed at an agent
+installing or maintaining this.
