@@ -1,7 +1,7 @@
 # claude-osc-notify
 
 Native macOS notifications from Claude Code sessions — local **and** remote (over
-Cursor Remote-SSH to clusters like NERSC/Perlmutter). A Claude Code hook emits an
+Cursor Remote-SSH to any host, e.g. an HPC login node). A Claude Code hook emits an
 OSC 777 escape sequence; a patched Cursor terminal extension turns it into a real
 macOS notification with a custom icon, per-event sound, and Banner-vs-Alert style.
 
@@ -81,9 +81,11 @@ fully restart Cursor.
 - **Full Cursor restart** (Cmd+Q) is required after patching; "Reload Window" is
   unreliable.
 - **tmux on the remote** needs `set -g allow-passthrough on`.
-- Sender bundle IDs (`org.luis.claude-{banner,alert}`) are arbitrary but must match
-  between the `.app` bundles and the extension patch; override both via the
-  `BANNER_ID` / `ALERT_ID` env vars if desired.
+- Sender bundle IDs (`com.claude-osc-notify.{banner,alert}`) are arbitrary but must
+  match between the `.app` bundles and the extension patch; override both via the
+  `BANNER_ID` / `ALERT_ID` env vars if desired. `install-mac.sh` restores the
+  pristine extension before patching, so changing the IDs and re-running applies
+  cleanly.
 
 ## Troubleshooting
 

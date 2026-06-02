@@ -2,7 +2,7 @@
 # OSC 777 notifier for Claude Code hooks (Stop / Notification).
 # Title may be prefixed with [sound:Name] and [alert] which the patched
 # Cursor extension strips into opts.sound and a sender-bundle switch.
-# Portable across Linux (NERSC/Perlmutter remote) and Darwin (local Mac).
+# Portable across Linux (remote hosts / HPC login nodes) and Darwin (local Mac).
 
 title="${1:-Claude}"
 body="${2:-}"

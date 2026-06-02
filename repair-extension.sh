@@ -8,8 +8,8 @@
 # reliable for picking up extension changes.
 set -eu
 
-BANNER_ID=${BANNER_ID:-org.luis.claude-banner}
-ALERT_ID=${ALERT_ID:-org.luis.claude-alert}
+BANNER_ID=${BANNER_ID:-com.claude-osc-notify.banner}
+ALERT_ID=${ALERT_ID:-com.claude-osc-notify.alert}
 
 # Locate Cursor.app and read its bundle id dynamically (differs per build / VS Code).
 CURSOR_APP=${CURSOR_APP:-/Applications/Cursor.app}

@@ -7,8 +7,8 @@ set -eu
 REPO_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 . "$REPO_ROOT/lib/common.sh"
 
-BANNER_ID=${BANNER_ID:-org.luis.claude-banner}
-ALERT_ID=${ALERT_ID:-org.luis.claude-alert}
+BANNER_ID=${BANNER_ID:-com.claude-osc-notify.banner}
+ALERT_ID=${ALERT_ID:-com.claude-osc-notify.alert}
 ICON_DEST="$HOME/.cursor/claude-notify-icon.png"
 
 [ "$(uname)" = "Darwin" ] || die "install-mac.sh is for macOS. On a cluster use install-remote.sh."
@@ -71,6 +71,12 @@ if ! cursor --list-extensions 2>/dev/null | grep -qi "vscode-terminal-osc-notifi
     cursor --install-extension wenbopan.vscode-terminal-osc-notifier 2>/dev/null \
         || warn "marketplace install failed — sideload the .vsix manually, then re-run"
 fi
+# Restore the pristine extension.js first (if a prior install saved one) so the
+# patches reapply cleanly with the CURRENT bundle IDs instead of being skipped
+# by repair's idempotency guard when IDs change between installs.
+for d in "$HOME"/.cursor/extensions/wenbopan.vscode-terminal-osc-notifier-*/; do
+    [ -f "$d/dist/extension.js.orig" ] && cp "$d/dist/extension.js.orig" "$d/dist/extension.js"
+done
 BANNER_ID="$BANNER_ID" ALERT_ID="$ALERT_ID" sh "$REPO_ROOT/repair-extension.sh"
 
 log "8/8  bootstrap notifications (so the apps appear in System Settings)"
