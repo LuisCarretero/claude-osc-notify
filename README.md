@@ -9,7 +9,8 @@ notification with a custom icon, per-event sound, and Banner-vs-Alert style.
 > patches a third-party extension's compiled JS, so treat it as a personal hack,
 > not production software. PRs/forks welcome, expectations low. 😄
 
-![Example notification](assets/demo-notification.png)
+<img src="assets/demo-notification.png" alt="Example notification" width="380">
+
 
 ```
 Claude Code hook ──OSC 777──▶ Cursor terminal ──▶ patched extension
