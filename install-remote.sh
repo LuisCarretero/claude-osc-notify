@@ -16,7 +16,9 @@ log "2/4  hook scripts";      install_scripts
 log "3/4  settings.json";     merge_settings
 log "4/4  shell integration"; ensure_zshrc_block remote
 
-cat <<DONE
+# Quoted delimiter: the text below mentions $VSCODE_SHELL_INTEGRATION literally,
+# which `set -u` would otherwise treat as an unbound variable and abort on.
+cat <<'DONE'
 
 ────────────────────────────────────────────────────────────────────
 Remote install complete.
