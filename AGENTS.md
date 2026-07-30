@@ -117,7 +117,11 @@ A full Cursor quit (Cmd+Q) is required after patching — "Reload Window" is unr
 
 - `settings.json` is jq-merged (only the 3 hook keys are set; everything else
   preserved). A timestamped `.bak` is written each merge.
-- `~/.zshrc` block is fenced by `# >>> claude-osc-notify … >>>` markers; added once.
+- `~/.zshrc` block is fenced by `# >>> claude-osc-notify … >>>` markers. Content comes
+  from `zshrc_block()`; `ensure_zshrc_block()` compares the file's fenced region against
+  it and **replaces it when they differ** (timestamped `.bak` first), so fixes reach hosts
+  that already installed. Only the fenced region is rewritten — it is re-appended at the
+  end of the file, so don't rely on its position. Unchanged → no write at all.
 - Scripts copy to `~/bin`. Hook commands use `~/bin/notify_osc.sh` / `record_tool.sh`.
 - Everything re-runnable.
 
